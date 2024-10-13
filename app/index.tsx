@@ -95,6 +95,30 @@ const LocationLogger: React.FC = () => {
           router.push("/map");
         }}
       />
+
+      <Button
+        title="Location 1"
+        onPress={() => {
+          router.navigate({
+            pathname: "/liveLocationSharing",
+            params: {
+              userId: "userId1",
+            },
+          });
+        }}
+      />
+
+      <Button
+        title="Location 2"
+        onPress={() => {
+          router.navigate({
+            pathname: "/liveLocationSharing",
+            params: {
+              userId: "userId2",
+            },
+          });
+        }}
+      />
     </View>
   );
 };

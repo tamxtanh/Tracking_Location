@@ -15,8 +15,8 @@ const LONGITUDE_DELTA = 0.009;
 
 const Map: React.FC = () => {
   const [location, setLocation] = useState<Region>({
-    latitude: 18.7934829,
-    longitude: 98.9867401,
+    latitude: 37.7749,
+    longitude: -122.4194,
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
   });
@@ -37,8 +37,7 @@ const Map: React.FC = () => {
       locationSubscription = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.High,
-          timeInterval: 1000,
-          distanceInterval: 1,
+          timeInterval: 2000,
         },
         (newLocation) => {
           const { latitude, longitude } = newLocation.coords;
@@ -48,6 +47,7 @@ const Map: React.FC = () => {
               routeCoordinates[routeCoordinates.length - 1];
             const newDistance =
               haversine(lastCoordinate, { latitude, longitude }) || 0;
+            console.log("newDistance", newDistance);
             setDistanceTravelled((prevDistance) => prevDistance + newDistance);
           }
 
@@ -72,7 +72,7 @@ const Map: React.FC = () => {
         locationSubscription.remove();
       }
     };
-  }, [routeCoordinates]);
+  }, []);
 
   return (
     <View style={styles.container}>
